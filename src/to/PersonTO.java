@@ -25,6 +25,14 @@ public class PersonTO {
 	public void setMother(int mother) {
 		this.mother = mother;
 	}
+	public PersonTO(int cnic, String name, int father, int mother) {
+		this.cnic = cnic;
+		this.name = name;
+		this.father = father;
+		this.mother = mother;
+	}
+	public PersonTO() {
+	}
 	private int cnic;
 	private String name;
 	private int father;

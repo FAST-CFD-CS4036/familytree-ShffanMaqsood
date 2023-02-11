@@ -1,19 +1,22 @@
 package bll;
 
-import java.sql.SQLException;
 
-import dal.PersonDAO;
+import dal.IDAL;
+import dal.PersonDAOStub;
 import to.PersonTO;
 
-public class PersonBO {
-	private PersonDAO dao;
-	
-	public PersonBO () throws SQLException {
-		dao = new PersonDAO();
-	}
-	public PersonBO(PersonDAO dao) {
+public class PersonBO implements IBO{
+	private IDAL dao;
+
+	/*
+	 * private PersonDAO dao; public PersonBO () throws SQLException { dao = new
+	 * PersonDAO(); }
+	 */
+	public PersonBO(IDAL dao) {
 		this.dao = dao;
 	}
+//	public PersonBO() {
+//	}
 
 	public boolean isSibling (int cnic1, int cnic2) {
 		PersonTO p1 = dao.getPerson(cnic1);
@@ -34,7 +37,7 @@ public class PersonBO {
 	
 	public PersonTO getPerson(String Name)
 	{
-		PersonTO obj = dao.getPersonDetails(Name);
+		PersonTO obj = dao.getMatchingPerson(Name);
 		return obj;
 	}
 	
@@ -45,5 +48,11 @@ public class PersonBO {
 		return p1.getFather() == p2.getFather();
 	}
 
-	
+	/*
+	 * public static void main(String[] args) { PersonDAOStub daoStub = new
+	 * PersonDAOStub(); PersonBO bo = new PersonBO(daoStub); boolean expected =
+	 * true; boolean actual = bo.isSibling(2, 4); if (expected == actual) {
+	 * System.out.println("Test case passed"); } else {
+	 * System.out.println("Test case failed"); } assert expected == actual; }
+	 */
 }

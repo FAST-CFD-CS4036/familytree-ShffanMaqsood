@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import to.PersonTO;
 
-public class PersonDAO {
+public class PersonDAO implements IDAL {
 	private Connection con;
 	
 	public PersonDAO() throws SQLException {
@@ -41,8 +41,8 @@ public class PersonDAO {
 		return person;
 	}
 	
-	
-	public PersonTO getPersonDetails(String name) {
+
+	public PersonTO getMatchingPerson(String name) {
 		PersonTO person = new PersonTO();
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM `citizen` WHERE `name` = ?");
